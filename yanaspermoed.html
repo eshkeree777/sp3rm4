@@ -280,6 +280,17 @@
         document.querySelector('button').textContent = 'Сохранить';
     }
 
+            function clearAllRecords() {
+        if (confirm('Вы уверены, что хотите удалить все записи?')) {
+            records = [];
+            totalMacros = { protein: 0, fat: 0, carb: 0 };
+            localStorage.removeItem('records');
+            localStorage.removeItem('totalMacros');
+            updateTable();
+            updateUI();
+        }   
+        }
+
     function deleteRecord(index) {
         if (confirm('Вы уверены, что хотите удалить эту запись?')) {
             totalMacros.protein -= records[index].protein;
@@ -321,5 +332,9 @@
         document.getElementById('carb-input').value = '';
     }
 </script>
+        </div>
+    <div class="input-container">
+        <button onclick="clearAllRecords()">Удалить все</button>
+    </div>
 </body>
 </html>
